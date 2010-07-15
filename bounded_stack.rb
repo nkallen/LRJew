@@ -9,13 +9,15 @@ class BoundedStack
   end
 
   def push(data)
+    shifted = nil
     if @current_size == @maximum_size
-      @list.shift
+      shifted = @list.shift
     else
       @current_size += 1
     end
 
-    @list.push(data)
+    node = @list.push(data)
+    [node, shifted]
   end
 
   def length
@@ -24,36 +26,15 @@ class BoundedStack
 
   alias_method :size, :length
 
+  def method_missing(method, *args, &block)
+    @list.send(method, *args, &block)
+  end
+
   def each(&block)
     @list.each(&block)
   end
 end
 
-class Node
-  attr_accessor :next, :prev
-  attr_reader :data
-
-  def initialize(data, _next)
-    @data = data
-    @next = _next
-  end
-
-  def push(data)
-    node = Node.new(data, self)
-    self.prev = node
-    node
-  end
-
-  def inspect
-    prev_data = @prev && @prev.data || nil
-    next_data = @next && @next.data || nil
-    "#{@prev_data.inspect} <- #{@data.inspect} -> #{@next_data.inspect}"
-  end
-  alias_method :to_s, :inspect
-end
-
-
-# Here we include
 require 'rubygems'
 require 'spec'
 
@@ -74,9 +55,10 @@ describe BoundedStack do
 
     describe "when the stack is full" do
       it "truncates the list" do
-        6.times do |i|
+        5.times do |i|
           @bounded_stack.push(i + 1)
         end
+        @bounded_stack.push(6)[1].should == 1
         @bounded_stack.size.should == 5
         @bounded_stack.to_a.should == [2, 3, 4, 5, 6]
       end

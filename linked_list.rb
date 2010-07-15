@@ -8,10 +8,15 @@ class LinkedList
   end
 
   def push(data)
-    node = @first.next.push(data)
-    @first.next = node
-    node.prev = @first
-    node
+    case data
+    when Node
+      insert_before(@first.next, data)
+    else
+      node = @first.next.push(data)
+      @first.next = node
+      node.prev = @first
+      node
+    end
   end
 
   def each
@@ -32,11 +37,6 @@ class LinkedList
     before.next = after
     before.prev = after.prev
     after.prev = before
-  end
-
-  def move_to_front(node)
-    delete(node)
-    insert_before(node, @first.next)
   end
 
   def shift
@@ -150,17 +150,6 @@ describe LinkedList do
     end
   end
 
-  describe "#move_to_front" do
-    it "lets you push to the top" do
-      one = @linked_list.push(1)
-      two = @linked_list.push(2)
-      three = @linked_list.push(3)
-      @linked_list.to_a.should == [1, 2, 3]
-      @linked_list.move_to_front(two)
-      @linked_list.to_a.should == [1, 3, 2]
-     end
-  end
-
   describe "#length" do
     it "is zero for the empty list" do
       @linked_list.length.should == 0
@@ -184,33 +173,6 @@ describe LinkedList do
       one = @linked_list.push(1)
       @linked_list.delete(one)
       @linked_list.length.should == 0
-    end
-
-    it "returns correct when using move_to_front on the end" do
-      one = @linked_list.push(1)
-      two = @linked_list.push(2)
-      three = @linked_list.push(3)
-      @linked_list.length.should == 3
-      @linked_list.move_to_front(one)
-      @linked_list.length.should == 3
-    end
-
-    it "returns correct when using move_to_front in the middle" do
-      one = @linked_list.push(1)
-      two = @linked_list.push(2)
-      three = @linked_list.push(3)
-      @linked_list.length.should == 3
-      @linked_list.move_to_front(two)
-      @linked_list.length.should == 3
-    end
-
-    it "returns correct when using move_to_front on the head" do
-      one = @linked_list.push(1)
-      two = @linked_list.push(2)
-      three = @linked_list.push(3)
-      @linked_list.length.should == 3
-      @linked_list.move_to_front(three)
-      @linked_list.length.should == 3
     end
   end
 end
