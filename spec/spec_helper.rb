@@ -3,7 +3,7 @@ $LOAD_PATH.unshift "#{dir}/../lib"
 
 require 'rubygems'
 require 'spec'
-require 'lru'
+require 'lrjew'
 
 Spec::Runner.configure do |config|
 end
