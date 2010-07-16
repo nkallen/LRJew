@@ -8,7 +8,7 @@
 ## Wait, what is an LRU again?
 
 * A cache is an efficient place to store data.
-* If you have a cache of data of bounded size, and you request more data than can be stored in the cache, eventually your cache will be full.
+* If you have a cache of bounded size, and you keep putting more and more data into the cache, eventually your cache will be full.
 * When a cache is full, you can either throw away some data from the cache, or not add new data to the cache.
 * An LRU is the most popular "cache replacement algorithm".
 * An LRU is a policy whereby you make room for new data by throwing away the oldest data.
