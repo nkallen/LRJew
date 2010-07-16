@@ -2,18 +2,15 @@
 
 require 'lrjew'
 
-lru_size = ARGV[0] || 100_000
+lru_size   = ARGV[0] || 100_000
 print_freq = ARGV[1] || 50_000
 
-indexed_stack = IndexedBoundedStack.new(BoundedStack.new(LinkedList.new, 5))
+indexed_stack = IndexedBoundedStack.new(BoundedStack.new(LinkedList.new, lru_size))
 
 lru = Lru.new(indexed_stack)
 
-hits = 0
-
 GC.disable
-
-ARGF.each_with_index do |line, idx|
+$stdin.each_with_index do |line, idx|
   lru.include?(line)
   if (idx+1) % print_freq == 0
     puts "#{Time.now}: #{lru.inspect}"
