@@ -1,4 +1,5 @@
 class Lru
+  include Enumerable
   attr_reader :evictions, :hits, :misses, :gets
 
   def initialize(indexed_bounded_stack)
@@ -14,10 +15,14 @@ class Lru
       @stack.push(item)
     else
       @misses += 1
-      node, shifted = @stack.push(item)
+      _, shifted = @stack.push(item)
       @evictions += 1 if shifted
     end
     included
+  end
+
+  def each(&block)
+    @stack.each(&block)
   end
 
   def inspect

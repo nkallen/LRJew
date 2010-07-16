@@ -26,4 +26,14 @@ describe BoundedStack do
       end
     end
   end
+
+  describe '#delete' do
+    it "decrements the size" do
+      @bounded_stack.push(1)
+      @bounded_stack.push(2)
+      @bounded_stack.size.should == 2
+      @bounded_stack.delete(2)
+      @bounded_stack.size.should == 1
+    end
+  end
 end

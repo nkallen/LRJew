@@ -20,15 +20,16 @@ class BoundedStack
     [node, shifted]
   end
 
+  def delete(data)
+    @list.delete(data)
+    @current_size -= 1
+  end
+
   def length
     @current_size
   end
-
   alias_method :size, :length
 
-  def method_missing(method, *args, &block)
-    @list.send(method, *args, &block)
-  end
 
   def each(&block)
     @list.each(&block)
