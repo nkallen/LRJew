@@ -1,5 +1,4 @@
-require 'rubygems'
-require 'spec'
+require 'spec_helper'
 
 describe LinkedList do
   before do

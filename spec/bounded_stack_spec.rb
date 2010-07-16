@@ -1,6 +1,4 @@
-require 'rubygems'
-require 'spec'
-require 'bounded_stack'
+require 'spec_helper'
 
 describe BoundedStack do
   before do

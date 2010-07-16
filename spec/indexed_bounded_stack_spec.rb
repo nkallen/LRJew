@@ -1,6 +1,4 @@
-require 'rubygems'
-require 'spec'
-require '../src/indexed_bounded_stack'
+require 'spec_helper'
 
 describe IndexedBoundedStack do
   before do

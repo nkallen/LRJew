@@ -1,6 +1,3 @@
-require 'bounded_stack'
-require 'linked_list'
-
 class IndexedBoundedStack
   include Enumerable
 
