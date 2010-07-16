@@ -14,8 +14,9 @@ class IndexedBoundedStack
     node, shifted = @bounded_stack.push(data)
     @index[data] = node
     if shifted
-      @index.delete(shifted.data)
+      @index.delete(shifted)
     end
+    [node, shifted]
   end
 
   def delete(data)

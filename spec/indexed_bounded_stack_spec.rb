@@ -11,6 +11,14 @@ describe IndexedBoundedStack do
       @indexed_stack.push(2)
       @indexed_stack.to_a.should == [1, 2]
     end
+
+    it "returns items that were shifted off" do
+      5.times do |i|
+        @indexed_stack.push(i + 1)
+      end
+      node, shifted = @indexed_stack.push(6)
+      shifted.should == 1
+    end
   end
 
   describe "#delete" do
