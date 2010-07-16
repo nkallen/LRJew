@@ -9,7 +9,7 @@
 
 * A cache is an efficient place to store data.
 * If you have a cache of bounded size, and you keep putting more and more data into the cache, eventually your cache will be full.
-* When a cache is full, you can either throw away some data from the cache, or not add new data to the cache.
+* When a cache is full, you can either throw away some data or not add new data.
 * An LRU is the most popular "cache replacement algorithm".
 * An LRU is a policy whereby you make room for new data by throwing away the oldest data.
 * You can think of an LRU as a stack of bounded size where the oldest items fall off the bottom.
@@ -18,7 +18,7 @@
 
 * The efficiency of the cache is the cache hit rate: i.e., the percentage of queries that can be answered by the cache.
 * Cache efficiency is a fickle thing because query patterns differ for each application.
-* But most query patterns have [locality of reference](http://en.wikipedia.org/wiki/Locality_of_reference): some data are more frequently accessed than others.
+* But most query patterns have [Locality of Reference](http://en.wikipedia.org/wiki/Locality_of_reference): some data are more frequently accessed than others.
 * In many cases, a small percentage of data are queried the vast majority of the time.
 * If you are designing a database or a cache tier, you will want to know how much RAM to provision for the system.
 * In order to design an economical database or cache tier, you may want to provision just enough RAM for the [Working Set](http://en.wikipedia.org/wiki/Working_set) and not for the entire corpus of data.
