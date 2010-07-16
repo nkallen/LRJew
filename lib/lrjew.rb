@@ -1,6 +1,6 @@
 $LOAD_PATH.unshift(File.dirname(__FILE__))
 
-require 'lru/linked_list'
-require 'lru/bounded_stack'
-require 'lru/indexed_bounded_stack'
-require 'lru/lru'
+require 'lrjew/linked_list'
+require 'lrjew/bounded_stack'
+require 'lrjew/indexed_bounded_stack'
+require 'lrjew/lru'
